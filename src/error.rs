@@ -14,6 +14,7 @@ pub struct Error {
 /// Define type of error
 #[derive(Clone, Debug, Eq, PartialEq)]
 pub enum ErrorKind {
+    Generic,
     CreateBackup,
     CreateFile,
     CreateSymlink,
@@ -29,6 +30,7 @@ impl Error {
     pub fn description(&self) -> &str {
         use self::ErrorKind::*;
         match self.kind {
+            Generic => "An error occurred: ",
             CreateBackup => "Cannot create a backup of ",
             CreateFile => "Cannot create file ",
             CreateSymlink => "Cannot create symlink ",
